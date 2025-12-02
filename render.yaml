@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: catheter-triage
+    env: python
+    plan: starter
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn app:app --chdir backend --bind 0.0.0.0:$PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: models/gemini-2.5-pro
+      - key: STORAGE_DIR
+        value: /data/storage
+    disk:
+      name: history-store
+      mountPath: /data
+      sizeGB: 1

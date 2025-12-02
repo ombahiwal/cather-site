@@ -4,3 +4,4 @@ requests
 pillow
 pytest
 google-generativeai
+gunicorn
