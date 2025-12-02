@@ -1,0 +1,84 @@
+[
+  {
+    "id": "cfd87f40-1ae1-4208-801e-1d75914e3beb",
+    "timestamp": "2025-12-02T20:03:15.813886Z",
+    "image_url": "/history/image/cfd87f40-1ae1-4208-801e-1d75914e3beb.jpg",
+    "image_filename": "cfd87f40-1ae1-4208-801e-1d75914e3beb.jpg",
+    "original_filename": "example1.png",
+    "classification": {
+      "label": "Yellow",
+      "risk_score": 5,
+      "explanation": "Dressing lift with local signs \u2014 check dressing and review clinically.",
+      "overall_confidence": 0.5
+    },
+    "gemini": {
+      "image_id": "image_001.jpg",
+      "quality": {
+        "adequate_lighting": false,
+        "focused": false,
+        "view_complete": false,
+        "notes": "Fair"
+      },
+      "localization": {
+        "bbox": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "segmentation_mask_available": false
+      },
+      "features": {
+        "redness": {
+          "present": true,
+          "extent_percent": 0.0,
+          "confidence": null
+        },
+        "swelling": {
+          "present": false,
+          "extent_percent": 0.0,
+          "confidence": null
+        },
+        "dressing_lift": {
+          "present": true,
+          "confidence": null
+        },
+        "discharge": {
+          "present": true,
+          "type": null,
+          "amount": null,
+          "confidence": null
+        },
+        "exposed_catheter": {
+          "present": false,
+          "length_mm_estimate": null,
+          "confidence": null
+        },
+        "open_wound": {
+          "present": false,
+          "size_mm": null,
+          "confidence": null
+        },
+        "bruising": {
+          "present": false,
+          "confidence": null
+        },
+        "crusting": {
+          "present": true,
+          "confidence": null
+        },
+        "erythema_border_sharp": {
+          "yes": false,
+          "confidence": null
+        },
+        "fluctuance": {
+          "present": false,
+          "confidence": null
+        }
+      },
+      "overall_confidence": 0.5,
+      "recommended_label": "Abnormal",
+      "explanation": "The transparent dressing is significantly lifted along the edges, compromising the sterile barrier. There is evidence of serosanguinous discharge and crusting beneath the dressing, along with mild surrounding redness. The site requires immediate clinical evaluation and a dressing change."
+    }
+  }
+]
