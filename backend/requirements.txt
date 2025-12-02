@@ -3,4 +3,4 @@ python-dotenv
 requests
 pillow
 pytest
-# Optional if using google-provided client: google-generativeai
+google-generativeai

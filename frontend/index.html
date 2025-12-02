@@ -1,22 +1,93 @@
 <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>Catheter Site Triage</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <h1>Catheter Site Triage</h1>
-    <input type="file" id="imageInput" accept="image/*"><br>
-    <button id="analyzeBtn">Analyze</button>
-    <div id="result" class="card" style="display:none">
-      <h2 id="label"></h2>
-      <p id="risk"></p>
-      <p id="explanation"></p>
-      <pre id="rawjson" style="white-space:pre-wrap;max-height:200px;overflow:auto;"></pre>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catheter Site Triage</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <p class="subhead">AI-assisted care</p>
+        <h1>Catheter Site Triage</h1>
+        <p class="hero-copy">Capture or upload a dressing photo and receive structured indicators in seconds.</p>
+      </header>
+
+      <main>
+        <section id="screenUpload" class="screen active" aria-label="Upload screen">
+          <div class="card primary">
+            <h2>Collect imagery</h2>
+            <p>Use a recent, well-lit image or capture a new frame. Images are only used for analysis.</p>
+            <div class="input-group">
+              <input type="file" id="imageInput" accept="image/*" />
+              <button id="analyzeBtn" class="btn primary">Analyze photo</button>
+            </div>
+            <div class="divider"><span>or</span></div>
+            <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden />
+            <button id="cameraBtn" class="btn outline">Capture with camera</button>
+            <p class="note">Tip: hold the device steady 20 cm from the site for best clarity.</p>
+          </div>
+          <div id="status" class="status" aria-live="polite"></div>
+
+          <details class="card accordion" open>
+            <summary>Assessment guide</summary>
+            <ul class="guide-list">
+              <li><strong>Lighting</strong> — ensure even, shadow-free lighting for accurate surface cues.</li>
+              <li><strong>Framing</strong> — keep the catheter hub centered, 15–25 cm from the lens.</li>
+              <li><strong>Dressings</strong> — remove glare by angling slightly; avoid filters or flash.</li>
+              <li><strong>Escalation</strong> — Red label indicates urgent clinician review.</li>
+            </ul>
+          </details>
+
+          <details class="card accordion" id="historyPanel">
+            <summary>Assessment history</summary>
+            <div id="historyList" class="history-list">
+              <p class="note">No assessments stored yet.</p>
+            </div>
+          </details>
+        </section>
+
+        <section id="screenResults" class="screen" aria-label="Results screen" aria-hidden="true">
+          <div class="card summary">
+            <div class="summary-head">
+              <p class="summary-label">Latest assessment</p>
+              <span id="confidence" class="chip muted">Confidence —</span>
+            </div>
+            <div class="status-row">
+              <span id="statusDot" class="status-dot neutral" aria-hidden="false"></span>
+              <div>
+                <h2 id="label">Awaiting scan</h2>
+                <p id="risk">Risk score: —</p>
+              </div>
+            </div>
+            <p id="explanation">Run an analysis to view triage guidance.</p>
+          </div>
+
+          <div class="card indicators">
+            <h3>Indicators</h3>
+            <div id="indicatorList" class="indicator-grid"></div>
+          </div>
+
+          <details class="card details">
+            <summary>Full assessment data</summary>
+            <div id="rawjson" class="json-view"></div>
+          </details>
+
+          <button id="newScanBtn" class="btn secondary">Run another scan</button>
+        </section>
+      </main>
     </div>
-  </div>
-  <script src="app.js"></script>
-</body>
+
+    <div id="cameraOverlay" class="camera-overlay" aria-hidden="true">
+      <div class="camera-frame">
+        <video id="cameraStream" autoplay playsinline></video>
+        <div class="camera-actions">
+          <button id="captureBtn" class="btn primary" type="button">Capture frame</button>
+          <button id="closeCameraBtn" class="btn secondary" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
 </html>
